@@ -39,8 +39,16 @@ function SortRestaurants(props) {
 
     const compareRating = (a, b) => {
         //console.log("rating restaurants", props.restaurants);
-        let ratingA = a.rating,
+        let ratingA = 0,
+            ratingB = 0;
+        
+        if (a.rating != null){
+            ratingA = a.rating;
+        }
+
+        if (b.rating != null){
             ratingB = b.rating;
+        }
 
         if (ratingA < ratingB) {
             return 1;
