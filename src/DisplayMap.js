@@ -25,6 +25,7 @@ function DisplayMap(props) {
     console.log("longitude", props.longitude);
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  Note: Small bug, map doesn't change focal point on updating search location. You will have to manually scroll to the new area.
             <ReactMapGL
                 {...viewport}
                 mapboxApiAccessToken={API_KEY}
@@ -44,7 +45,6 @@ function DisplayMap(props) {
                         </button>
                     </Marker>
                 ))}
-
                 {selected ? (
                     <Popup latitude={selected.geometry.location.lat} longitude={selected.geometry.location.lng} onClose={() => { setSelected(null) }}>
                         <div>
