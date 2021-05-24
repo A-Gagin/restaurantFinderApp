@@ -1,9 +1,9 @@
 import './App.css';
 import React, { useState } from "react";
-import FindRestaurants from "./FindRestaurants";
-import DisplayRestaurants from "./DisplayRestaurants";
-import SortRestaurants from "./SortRestaurants"
-import DisplayMap from "./DisplayMap";
+import FindRestaurants from "./Components/FindRestaurants";
+import DisplayRestaurants from "./Components/DisplayRestaurants";
+import SortRestaurants from "./Components/SortRestaurants"
+import DisplayMap from "./Components/DisplayMap";
 
 function App() {
   const [restaurants, setRestaurants] = useState(null);
