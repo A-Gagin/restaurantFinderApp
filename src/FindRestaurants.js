@@ -150,9 +150,10 @@ function FindRestaurants(props) {
 
             </div>
             <br />
-            <div style={{ display: "flex", height: "190px", width: "300px", flexDirection: "column", alignItems: "center", border: "dotted", borderColor: "darkslategray", flexWrap: "wrap", backgroundColor: "darkgray", padding: "10px", margin: "4px", borderRadius: "10px"}}>
+            <div style={{ display: "flex", height: "200px", width: "300px", flexDirection: "column", alignItems: "center", border: "dotted", borderColor: "darkslategray", flexWrap: "wrap", backgroundColor: "darkgray", padding: "10px", margin: "4px", borderRadius: "10px"}}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <Typography variant="h6">— Active Filters —</Typography>
+                <br />
             </div>
 
             <div>
