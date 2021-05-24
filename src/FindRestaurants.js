@@ -18,8 +18,8 @@ function FindRestaurants(props) {
 
     const [bar, setBar] = useState(false);
     const [cafe, setCafe] = useState(false);
-    const [rest, setRest] = useState(false);
-    const [typeFilter, setTypeFilter] = useState("");
+    const [rest, setRest] = useState(true);
+    const [typeFilter, setTypeFilter] = useState("Restaurant");
 
     const [radius, setRadius] = useState(0);
     const [keyword, setKeyword] = useState("");

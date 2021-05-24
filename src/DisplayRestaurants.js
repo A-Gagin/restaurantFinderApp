@@ -13,7 +13,7 @@ function DisplayRestaurants(props) {
                                 <li>{restaurant.vicinity}</li>
                                 <li>{restaurant.rating != null ? restaurant.rating + " / 5" : "Rating data not available."}</li>
                                 <li>{restaurant.price_level != null ? "$".repeat(restaurant.price_level) : "Price data not available."}</li>
-                                <li><a href={"https://www.google.com/maps/dir/?api=1&origin=" + props.latitude + "," + props.longitude + "&destination=" + restaurant.geometry.location.lat + "," + restaurant.geometry.location.lng} target="_blank">Get Directions</a></li>
+                                <li><a href={"https://www.google.com/maps/dir/?api=1&origin=" + props.latitude + "," + props.longitude + "&destination=" + restaurant.geometry.location.lat + "," + restaurant.geometry.location.lng} target="_blank" rel="noreferrer">Get Directions</a></li>
                             </div>
                         </div>
                     ))
