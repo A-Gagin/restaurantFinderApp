@@ -5,8 +5,9 @@ import './Map.css';
 //Bug: can't update map focus. Not sure how to fix.
 
 function DisplayMap(props) {
-
+    // eslint-disable-next-line
     const [lati, setLatitude] = useState(props.latitude);
+    // eslint-disable-next-line
     const [long, setLongitude] = useState(props.longitude);
 
 
