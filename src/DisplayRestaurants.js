@@ -1,7 +1,7 @@
 //import React, { useState } from "react";
 
 function DisplayRestaurants(props) {
-    if (props.restaurants != null){
+    if (props.restaurants != null) {
         return (
             <div>
                 {

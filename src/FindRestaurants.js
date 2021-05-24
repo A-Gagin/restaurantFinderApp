@@ -3,20 +3,18 @@ const API_KEY = process.env.REACT_APP_api_key;
 
 function FindRestaurants(props) {
     const [address, setAddress] = useState(""); // used for geocoding api
-    const [location, setLocation] = useState("38.0293,-78.4767"); // default to Charlottesville, used for places api
+    const [location, setLocation] = useState(""); // default to Charlottesville, used for places api
 
     const [bar, setBar] = useState(false);
     const [cafe, setCafe] = useState(false);
     const [rest, setRest] = useState(false);
+    const [typeFilter, setTypeFilter] = useState("");
 
     const [radius, setRadius] = useState(0);
     const [keyword, setKeyword] = useState("");
 
     const handleAddressSearch = (e) => {
         setAddress(e.target.value);
-        // console.log(e.target.value);
-        // console.log("address", address)
-        // console.log(address.replaceAll(" ", "%20"));
     }
 
     const handleRadiusChange = (e) => {
@@ -31,18 +29,21 @@ function FindRestaurants(props) {
         setRest(true);
         setBar(false);
         setCafe(false);
+        setTypeFilter("Restaurant");
     }
 
     const changeBar = () => {
         setBar(true);
         setRest(false);
         setCafe(false);
+        setTypeFilter("Bar");
     }
 
     const changeCafe = () => {
         setCafe(true);
         setRest(false);
         setBar(false);
+        setTypeFilter("Cafe");
     }
 
     const getLocation = () => {
@@ -66,14 +67,14 @@ function FindRestaurants(props) {
                     console.log(location);
                 } else {
                     setLocation("38.0293,-78.4767");
-                    console.log("uh oh!");
+                    console.log("uh oh!"); //TODO: Make this an actual error statement lmao
                 }
             })
     }
 
     const getRestaurants = () => {
         let type = "";
-        if (bar){
+        if (bar) {
             type = "bar";
         } else if (cafe) {
             type = "cafe";
@@ -114,25 +115,39 @@ function FindRestaurants(props) {
 
             <input name="Keyword" onChange={handleKeywordChange} />
 
-            <button onClick={getLocation}>
-                Set Location
-            </button>
 
-            <button onClick = {changeRest}>
+            <button onClick={changeRest}>
                 Search for Restaurants
             </button>
 
-            <button onClick = {changeBar}>
+            <button onClick={changeBar}>
                 Search for Bars
             </button>
-            
-            <button onClick = {changeCafe}>
+
+            <button onClick={changeCafe}>
                 Search for Cafes
             </button>
+
+
+
+            <div>
+                Filters active: <br />
+                <li>Location: {address}</li>
+                <li>Max Distance: {radius} miles</li>
+                <li>Cuisine Keywords: {keyword}</li>
+                <li>Type of Establishment: {typeFilter}</li>
+            </div>
+
+            <button onClick={getLocation}>
+                Set Filters
+            </button>
+
+            <br />
 
             <button onClick={getRestaurants}>
                 Update Locations
             </button>
+
         </div>
     );
 }
