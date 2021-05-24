@@ -15,7 +15,7 @@ function App() {
   console.log("longitude",longitude);
 
   return (
-    <div>
+    <div style={{ backgroundColor: "lightgray" }}>
       <FindRestaurants setRestaurants={setRestaurants} setLatitude={setLatitude} setLongitude={setLongitude} />
       <DisplayMap restaurants={restaurants} latitude={latitude} longitude={longitude}/>
       <br/>

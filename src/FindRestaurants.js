@@ -1,5 +1,16 @@
 import React, { useState } from "react";
+import { Button, ButtonGroup, TextField, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 const API_KEY = process.env.REACT_APP_api_key;
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+    },
+}));
 
 function FindRestaurants(props) {
     const [address, setAddress] = useState(""); // used for geocoding api
@@ -107,51 +118,63 @@ function FindRestaurants(props) {
                 }
             });
     };
-
+    const classes = useStyles();
     return (
-        <div>
-            <h3>Search Filters:</h3>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Typography variant="h3">Restaurant Finder</Typography>
+            <br />
+            <Typography variant="h6">— Search Filters —</Typography>
+            <form className={classes.root} noValidate autoComplete="off">
+                <div>
+                    <TextField id="outlined-search" label="Street Address" type="search" variant="outlined" onChange={handleAddressSearch} />
+                    <TextField id="outlined-search" label="Max Distance (miles)" type="search" variant="outlined" onChange={handleRadiusChange} />
+                    <TextField id="outlined-search" label="Keyword" type="search" variant="outlined" onChange={handleKeywordChange} />
+                </div>
+            </form>
+
+
             <div>
-                <input name="Street Address" onChange={handleAddressSearch} />
+                <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+                    <Button onClick={changeRest}>
+                        Search for Restaurants
+                    </Button>
 
-                <input name="Max Distance" onChange={handleRadiusChange} />
+                    <Button onClick={changeBar}>
+                        Search for Bars
+                    </Button>
 
-                <input name="Keyword" onChange={handleKeywordChange} />
+                    <Button onClick={changeCafe}>
+                        Search for Cafes
+                    </Button>
+                </ButtonGroup>
+
+            </div>
+            <br />
+            <div style={{ display: "flex", height: "190px", width: "300px", flexDirection: "column", alignItems: "center", border: "dotted", borderColor: "darkslategray", flexWrap: "wrap", backgroundColor: "darkgray", padding: "10px", margin: "4px", borderRadius: "10px"}}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <Typography variant="h6">— Active Filters —</Typography>
             </div>
 
             <div>
-                <button onClick={changeRest}>
-                    Search for Restaurants
-                </button>
-
-                <button onClick={changeBar}>
-                    Search for Bars
-                </button>
-
-                <button onClick={changeCafe}>
-                    Search for Cafes
-                </button>
-            </div>
-
-
-
-            <div>
-                Filters active: <br />
                 <li>Location: {address}</li>
                 <li>Max Distance: {radius} miles</li>
                 <li>Cuisine Keywords: {keyword}</li>
                 <li>Type of Establishment: {typeFilter}</li>
             </div>
-
-            <button onClick={getLocation}>
-                Set Filters
-            </button>
-
             <br />
 
-            <button onClick={getRestaurants}>
+            <Button variant="contained" color="secondary" onClick={getLocation}>
+                Set Filters
+            </Button>
+            </div>
+
+            <br />
+            <br />
+
+            <Button variant="contained" color="primary" onClick={getRestaurants}>
                 Get Some Locations!
-            </button>
+            </Button>
+            <br />
 
         </div>
     );

@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from '@material-ui/core';
 function SortRestaurants(props) {
 
     const compareName = (a, b) => {
@@ -19,11 +20,11 @@ function SortRestaurants(props) {
         //console.log("price restaurants", props.restaurants);
         let priceA = 4,
             priceB = 4;
-        
-        if (a.price_level != null){
+
+        if (a.price_level != null) {
             priceA = a.price_level;
         }
-        if (b.price_level != null){
+        if (b.price_level != null) {
             priceB = b.price_level;
         }
 
@@ -66,12 +67,21 @@ function SortRestaurants(props) {
     }
 
     return (
-        <div>
-            <button onClick={sortName}>Sort by Name</button>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+                <Button onClick={sortName}>
+                    Sort by Name
+                    </Button>
 
-            <button onClick={sortPrice}>Sort by Price</button>
+                <Button onClick={sortPrice}>
+                    Sort by Price
+                    </Button>
 
-            <button onClick={sortRating}>Sort by Rating</button>
+                <Button onClick={sortRating}>
+                    Sort by Rating
+                    </Button>
+            </ButtonGroup>
+            <br />
         </div>
 
     )

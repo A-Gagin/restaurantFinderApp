@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import './Map.css';
-const API_KEY = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN; // for some reason doesn't work
+//const API_KEY = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN; // for some reason doesn't work
 //Bug: can't update map focus. Not sure how to fix.
 
 function DisplayMap(props) {
@@ -16,12 +16,12 @@ function DisplayMap(props) {
         longitude: long,
         width: "50vw",
         height: "50vh",
-        zoom: 10
+        zoom: 13
     });
 
-    const updateMap = () => {
-        setLatitude(props.latitude);
-        setLongitude(props.longitude);
+    // const updateMap = () => {
+    //     setLatitude(props.latitude);
+    //     setLongitude(props.longitude);
         // if(lati && long){
         //     setViewport({
         //         latitude: lati,
@@ -31,7 +31,7 @@ function DisplayMap(props) {
         //         zoom: 10
         //     })
         // }
-    }
+    // }
 
     const [selected, setSelected] = useState(null);
 
@@ -41,12 +41,13 @@ function DisplayMap(props) {
     console.log("latitude", props.latitude);
     console.log("longitude", props.longitude);
     return (
-        <div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <ReactMapGL
                 {...viewport}
                 mapboxApiAccessToken={"pk.eyJ1IjoibGF6aW9saSIsImEiOiJja3AxdXRjenMwY2pnMm50ZjY3Z3FzdmQwIn0.vvxu8liKvbdBvwqSK1pupg"}
                 // I know this is bad practice, but can't get it to work with the .env for some reason?
-                // mapStyle="mapbox://styles/lazioli/ckp21ezd037gm17qk5fin5vl5"
+                mapStyle="mapbox://styles/lazioli/ckp26219g4p5x17o0ug8tcbj2"
+                width = "100%"
                 onViewportChange={viewport => {
                     setViewport(viewport);
                 }}
