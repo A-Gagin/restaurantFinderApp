@@ -3,7 +3,7 @@ const API_KEY = process.env.REACT_APP_api_key;
 
 function FindRestaurants(props) {
     const [address, setAddress] = useState(""); // used for geocoding api
-    const [location, setLocation] = useState(""); // default to Charlottesville, used for places api
+    const [location, setLocation] = useState(""); // used for places api
 
     const [bar, setBar] = useState(false);
     const [cafe, setCafe] = useState(false);
@@ -62,7 +62,8 @@ function FindRestaurants(props) {
                     console.log("Geocoding call", obj) // testing
                     let lat = obj.results[0].geometry.location.lat.toString();
                     let long = obj.results[0].geometry.location.lng.toString();
-                    console.log("lat and long", lat + "," + long);
+                    props.setLatitude(lat);
+                    props.setLongitude(long);
                     setLocation(lat + "," + long);
                     console.log(location);
                 } else {
@@ -109,24 +110,28 @@ function FindRestaurants(props) {
 
     return (
         <div>
-            <input name="Street Address" onChange={handleAddressSearch} />
+            <h3>Search Filters:</h3>
+            <div>
+                <input name="Street Address" onChange={handleAddressSearch} />
 
-            <input name="Max Distance" onChange={handleRadiusChange} />
+                <input name="Max Distance" onChange={handleRadiusChange} />
 
-            <input name="Keyword" onChange={handleKeywordChange} />
+                <input name="Keyword" onChange={handleKeywordChange} />
+            </div>
 
+            <div>
+                <button onClick={changeRest}>
+                    Search for Restaurants
+                </button>
 
-            <button onClick={changeRest}>
-                Search for Restaurants
-            </button>
+                <button onClick={changeBar}>
+                    Search for Bars
+                </button>
 
-            <button onClick={changeBar}>
-                Search for Bars
-            </button>
-
-            <button onClick={changeCafe}>
-                Search for Cafes
-            </button>
+                <button onClick={changeCafe}>
+                    Search for Cafes
+                </button>
+            </div>
 
 
 
@@ -145,7 +150,7 @@ function FindRestaurants(props) {
             <br />
 
             <button onClick={getRestaurants}>
-                Update Locations
+                Get Some Locations!
             </button>
 
         </div>

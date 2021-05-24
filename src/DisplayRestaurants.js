@@ -10,7 +10,7 @@ function DisplayRestaurants(props) {
                             <h5>{restaurant.name}</h5>
                             <div>
                                 <li>{restaurant.vicinity}</li>
-                                <li>{restaurant.rating} / 5</li>
+                                <li>{restaurant.rating != null ? restaurant.rating + " / 5" : "Rating data not available."}</li>
                                 <li>{restaurant.price_level != null ? "$".repeat(restaurant.price_level) : "Price data not available."}</li>
                             </div>
                         </div>
