@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import './Map.css';
-//const API_KEY = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN; // for some reason doesn't work
+const API_KEY = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 //Bug: can't update map focus. Not sure how to fix.
-
+console.log("api key", API_KEY);
 function DisplayMap(props) {
 
     const [viewport, setViewport] = useState({
@@ -14,22 +14,8 @@ function DisplayMap(props) {
         zoom: 13
     });
 
-    // const updateMap = () => {
-    //     setLatitude(props.latitude);
-    //     setLongitude(props.longitude);
-    // if(lati && long){
-    //     setViewport({
-    //         latitude: lati,
-    //         longitude: long,
-    //         width: "50vw",
-    //         height: "50vh",
-    //         zoom: 10
-    //     })
-    // }
-    // }
 
     const [selected, setSelected] = useState(null);
-    //const [directionsURL, setDirectionsURL] = useState("");
 
 
     if (props.restaurants === null) {
@@ -41,8 +27,7 @@ function DisplayMap(props) {
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <ReactMapGL
                 {...viewport}
-                mapboxApiAccessToken={"pk.eyJ1IjoibGF6aW9saSIsImEiOiJja3AxdXRjenMwY2pnMm50ZjY3Z3FzdmQwIn0.vvxu8liKvbdBvwqSK1pupg"}
-                // I know this is bad practice, but can't get it to work with the .env for some reason?
+                mapboxApiAccessToken={API_KEY}
                 mapStyle="mapbox://styles/lazioli/ckp26219g4p5x17o0ug8tcbj2"
                 width="100%"
                 onViewportChange={viewport => {
@@ -59,13 +44,6 @@ function DisplayMap(props) {
                         </button>
                     </Marker>
                 ))}
-                {/* <Marker key="You" latitude={props.latitude} longitude={props.longitude}>
-                    <button className="marker-btn" onClick={(e) => {
-                        e.preventDefault();
-                    }}>
-                        <img src="https://img.icons8.com/emoji/48/000000/red-circle-emoji.png" alt="You are here"/>
-                    </button>
-                </Marker> */}
 
                 {selected ? (
                     <Popup latitude={selected.geometry.location.lat} longitude={selected.geometry.location.lng} onClose={() => { setSelected(null) }}>
@@ -79,7 +57,7 @@ function DisplayMap(props) {
                     </Popup>
                 ) : null}
             </ReactMapGL>
-            {/* <button onClick={updateMap}>Update Map</button> */}
+
         </div>
     );
 }
