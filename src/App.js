@@ -15,12 +15,14 @@ function App() {
   console.log("longitude",longitude);
 
   return (
-    <div style={{ backgroundColor: "lightgray" }}>
+    <div style={{ backgroundColor: "lightgray"}}>
       <FindRestaurants setRestaurants={setRestaurants} setLatitude={setLatitude} setLongitude={setLongitude} />
       <DisplayMap restaurants={restaurants} latitude={latitude} longitude={longitude}/>
       <br/>
       <SortRestaurants restaurants={restaurants} setRestaurants={setRestaurants} />
-      <DisplayRestaurants restaurants={restaurants} />
+      <div style={{width: "500px", marginLeft: "auto", marginRight:"auto"}}>
+      <DisplayRestaurants restaurants={restaurants} latitude={latitude} longitude={longitude} />
+      </div>
     </div>
   );
 }

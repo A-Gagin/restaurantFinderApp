@@ -35,6 +35,8 @@ function DisplayMap(props) {
     // }
 
     const [selected, setSelected] = useState(null);
+    //const [directionsURL, setDirectionsURL] = useState("");
+    
 
     if(props.restaurants === null){
         return null;
@@ -71,6 +73,7 @@ function DisplayMap(props) {
                             <li>{selected.vicinity}</li>
                             <li>{selected.rating != null ? selected.rating + " / 5" : "Rating data not available."}</li>
                             <li>{selected.price_level != null ? "$".repeat(selected.price_level) : "Price data not available."}</li>
+                            <li><a href={"https://www.google.com/maps/dir/?api=1&origin=" + props.latitude + "," + props.longitude + "&destination=" + selected.geometry.location.lat + "," + selected.geometry.location.lng} target="_blank">Get Directions</a></li>
                         </div>
                     </Popup>
                 ) : null}
